@@ -54,19 +54,30 @@ jobs:
         run: |
           set -e -o pipefail
           ./cruelbuild config                    \
-                       model=${{ matrix.model }} \
-                       name="Cruel-devel"        \
+                       os_patch_level=4053-5     \
+                       model=G970F               \
+                       name="Test1"              \
                        toolchain=$TOOLCHAIN      \
                        +magisk                   \
+                       +bfq                      \
                        +nohardening              \
+                       +nohardening2             \
                        +ttl                      \
                        +wireguard                \
                        +cifs                     \
                        +sdfat                    \
                        +ntfs                     \
                        +force_dex_wqhd           \
+                       +sched_powersave          \
+                       +sched_performance        \
+                       +sched_ondemand           \
                        +morosound                \
                        +boeffla_wl_blocker       \
+                       +1000hz                   \
+                       +fp_boost                 \
+                       +performance              \
+                       +noswap                   \
+                       +nozram                   \
           2>&1 | tee config.info
 
       - name: Install gcc-aarch64-linux-gnu
